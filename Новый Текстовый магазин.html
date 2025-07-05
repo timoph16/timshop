@@ -1,0 +1,291 @@
+<html>
+	<head>
+		<title>TimShop</title>
+		<meta charset="UTF-8">
+		<meta name="description" content="Магазин под брендом TimShop в новочеркасске.">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+		<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&amp;display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&amp;display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="css/korzina.css">
+	</head>
+	<body>
+		<div class="shapka">
+			<a class="logo" href="#">TimShop</a>
+		</div>
+		<div id="korzina" onclick="open_cart()" class="korzina-open-btn">
+			<img src="svg/cart.svg">
+		</div>
+		<div class="slider">
+			<div id="items">
+			</div>
+			<div onclick="prev_slide()" class="slide-arrow prev"><img src="svg/prev.svg"></div>
+			<div onclick="next_slide()" class="slide-arrow next"><img src="svg/next.svg"></div>
+			<div class="slider-dots">
+				<span onclick="current_slide(0)" class="dot">1</span>
+				<span onclick="current_slide(1)" class="dot">2</span>
+				<span onclick="current_slide(2)" class="dot">3</span>
+				<span onclick="current_slide(3)" class="dot">4</span>
+			</div>
+			
+		</div>
+		<div class="korzina-win invs">
+			<h1 class="Rubik">Корзина</h1>
+			<button onclick="close_cart()" id="close-win" class="korzina-close-btn"><img src="svg/close.svg"></button>
+			<div id="table" style="display: flex; justify-content: center;">
+				<table class="korzina-table">
+					<tr>
+						<th>Наименование</th>
+						<th>Цена</th>
+						<th colspan="3">Кол-во</th>
+					</tr>
+				</table>
+			</div>
+			<p id="cost">Общая стоимость: 0 руб.</p>
+			<h1 class="Rubik">Оформление заказа</h1>
+			<div class="send-form">
+				<form class="order-form" method="POST" action="send.php">
+					<input class="form-control" type="hidden" id="hidden_item" name="cart" value="Привет"><br>
+					<input class="form-control" type="text" name="name" placeholder="Имя"><br>
+					<input class="form-control" type="phone" name="phone" placeholder="Телефон"><br>
+					<input class="form-control" type="email" name="email" placeholder="Email"><br>
+					<input class="send-control" type="submit" value="Отправить заказ">
+				</form>
+			</div>
+		</div>
+
+		<h1 class="Rubik">Список товаров</h1>
+
+		<div class="container">
+			<div class="card">
+				<img class="product-img" src="img/products/геймпад.png">
+				<h3 class="Rubik" class="card-title">Геймпад</h3>
+				<p class="Rubik">Цена: 500 руб.</p>
+				<div style="display:flex;justify-content: center;">
+					<button onclick="add2cart(1, 'Геймпад', 500)" class="btn2cart">В корзину</button>
+				</div>
+			</div>
+		</div>
+
+		<h1 class="Rubik">Наши партнеры</h1>
+
+		<div class="partners-container">
+			<img class="partner-img" src="img/partners/ТВОЕ.png">
+			<img class="partner-img" src="img/partners/Gloria Jeans.jpg">
+		</div>
+		<div class="foot">
+<!--
+			<a class="socnetwork" href="https://vk.com/intermir_space"><img width="24px" height="24px" src="img/vk.png"></a>
+			<a class="socnetwork" href="https://www.instagram.com/intermir_space/"><img width="24px" height="24px" src="img/instagram.png"></a>
+			<br>
+-->
+			<p style="font-family: 'Rubik', sans-serif;">© TimShop 2025, Все права защищены</p>
+		</div>
+		<script src="js/slider.js"></script>
+		<script src="js/script.js"></script>
+		<script src="js/products.js"></script>
+	</body>
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+		
+		#cost{
+			font-family: 'Rubik', sans-serif;
+			text-align: center;
+		}
+		
+		.foot{
+			background-color: pink;
+			height: 45px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		.socnetwork{
+			margin-left: 5px;
+			margin-right: 5px;
+		}
+
+		.partners-container{
+			display: flex;
+			justify-content: center;
+		}
+
+		.partner-img{
+			object-fit: cover;
+			width: 175px;
+			height: 175px;
+			filter: grayscale(1);
+			transition-duration: 250ms;
+			margin-left: 10px;
+			margin-right: 10px;
+		}
+		.partner-img:hover{
+			filter: grayscale(0);
+			transition-duration: 250ms;
+		}
+
+		.Rubik{
+			font-family: 'Rubik', sans-serif;
+			font-weight: 300;
+			text-align: center;
+		}
+
+		.btn2cart{
+			font-family: 'Rubik';
+			background-color: blue;
+			width: 120px;
+			height: 30px;
+			border: none;
+			border-radius: 5px;
+			font-size: 15px;
+			font-weight: 400;
+			color: white;
+			transition-duration: 500ms;
+		}
+		.btn2cart:hover{
+			cursor: pointer;
+			background-color: yellow;
+			color: black;
+			transition-duration: 500ms;
+		}
+
+		.container{
+			display: flex;
+			justify-content: space-around;
+			flex-wrap: wrap;
+		}
+		.card{
+			width: 200px;
+			padding: 10px;
+			background-color: red;
+			border: solid;
+			border-width: 3px;
+			margin: 10px;
+			padding: 15px;
+			border-radius: 15px;
+		}
+
+		.product-img{
+			object-fit: cover;
+			width: 200px;
+			height: 200px;
+			border-radius: 7.5px;
+		}
+
+		.active{
+			background-color: blue;
+			transition-duration: 250ms;
+		}
+		.inactive{
+			background-color: black;
+			transition-duration: 250ms;
+		}
+
+		.slider-dots{
+			width: 100%;
+			position: absolute;
+			top: 300px;
+			display: flex;
+			justify-content: center;
+		}
+		.dot{
+			cursor: default;
+			width: 25px;
+			height: 25px;
+			text-align: center;
+			font-size: 20px;
+			vertical-align: center;
+			margin-left: 5px;
+			margin-right: 5px;
+			border-radius: 5px;
+			color: white;
+			transition-duration: 500ms;
+			font-family: 'Rubik', sans-serif;
+		}
+		.dot:hover{
+			background-color: pink;
+			transition-duration: 500ms;
+		}
+		.dot:active{
+			background-color: rgb(128, 0, 128);
+			transition-duration: 0ms;
+		}
+
+		.next{
+			position: absolute;
+			right: 15px;
+			transition-duration: 500ms;
+		}
+		.next:hover{
+			background-color: pink;
+			transition-duration: 500ms;
+		}
+		.next:active{
+			background-color: rgb(128, 0, 128);
+			transition-duration: 0ms;
+		}
+		
+		.slide-arrow{
+			width: 25px;
+			height: 25px;
+			text-align: center;
+			background-color: black;
+			border-radius: 3px;
+			top: 150px;
+		}
+		
+		.prev{
+			position: absolute;
+			left: 15px;
+			transition-duration: 500ms;
+		}
+		.prev:hover{
+			background-color: pink;
+			transition-duration: 500ms;
+		}
+		.prev:active{
+			background-color: rgb(128, 0, 128);
+			transition-duration: 0ms;
+		}
+		
+		.slider{
+			height: 300px;
+			display: flex;
+			justify-content: center;
+		}
+		
+		.slide_img{
+			object-fit: cover;
+			object-position: 50% 50%;
+			width: 100vw;
+			height: 300px;
+			overflow: hidden;
+		}
+		
+		a{
+			text-decoration: none;
+			color: white;
+		}
+		h1{
+			margin-top: 20px;
+			margin-bottom: 20px;
+			width: 100%;
+			text-align: center;
+		}
+		.shapka{
+			background-color: black;
+			padding-top: 5px;
+			padding-bottom: 5px;
+			padding-left: 80px;
+			font-size: 24px;
+		}
+		body {
+			margin: 0;
+		}
+		.logo{
+			color: pink;
+			font-family: 'Rubik', sans-serif;
+			font-weight: 400;
+		}
+	</style>
+</html>
